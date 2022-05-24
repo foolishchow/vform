@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "declaration": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "rootDir": "./",
+    "baseUrl": "./",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "vform-ant-design": [
+        "./src/index.ts"
+      ],
+      "vform-ant-design/*": [
+        "./src/*"
+      ],
+      "@examples/*": [
+        "./examples/*"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "docs",
+    "build",
+    "examples",
+  ],
+  "exclude": [
+    "docs/.vitepress/dist",
+    "examples/demo"
+  ]
+}

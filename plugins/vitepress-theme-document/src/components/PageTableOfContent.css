@@ -1,0 +1,47 @@
+.vitepress-toc-wrapper {
+  border-left: 1px solid var(--c-divider);
+}
+
+.vitepress-toc-wrapper .holder {
+  position: sticky;
+  top: calc(var(--header-height) + 32px);
+  margin-top: 20px;
+  padding-left: 6px;
+  /* padding: 4px 8px 4px 12px; */
+  margin-bottom: 32px;
+  width: 200px;
+  margin-left: 20px;
+}
+
+.vitepress-toc-wrapper .toc-marker {
+  opacity: 0;
+  position: absolute;
+  background-color: var(--c-brand);
+  border-radius: 4px;
+  width: 4px;
+  height: 14px;
+  margin-top: 6px;
+  top: 30px;
+  left: 0;
+  z-index: 0;
+  transition: top .25s cubic-bezier(0, 1, .5, 1), opacity .25s, background-color .5s;
+}
+
+.vitepress-toc-wrapper .sidebar-link-item {
+  font-size: 14px;
+  color: var(--c-text-light)
+}
+
+.vitepress-toc-wrapper .sidebar-link-item.active {
+  font-weight: 500;
+}
+
+.vitepress-toc-wrapper {
+  display: block;
+}
+
+@media screen and (max-width: 1200px) {
+  .vitepress-toc-wrapper {
+    display: none;
+  }
+}

@@ -1,6 +1,32 @@
 # 表单
 
+## 快速开始
+
+`form` 完全继承了 `ElForm` 的所有方法
+
+```ts
+export interface VFormInstance<T extends object> {
+  /**
+  * 触发表单验证
+  */
+  validate: (callback?: FormValidateCallback | undefined) => FormValidationResult;
+  addField: (field: FormItemContext) => void;
+  removeField: (field: FormItemContext) => void;
+  resetFields: (props?: Arrayable<FormItemProp> | undefined) => void;
+  clearValidate: (props?: Arrayable<FormItemProp> | undefined) => void;
+  obtainValidateFields: (props: Arrayable<FormItemProp>) => FormItemContext[];
+  doValidateField: (props?: Arrayable<FormItemProp>) => Promise<boolean>;
+  validateField: (props?: Arrayable<FormItemProp> | undefined, callback?: FormValidateCallback | undefined) => FormValidationResult;
+  scrollToField: (prop: FormItemProp) => void;
+}
+```
+<demo src="../../examples/api/create-form.tsx" 
+  file="../../examples/types.ts" />
+
+## 属性  
+
 表单`Form`的属性完全继承了`element-plus`的[表单`Form`属性](https://element-plus.org/zh-CN/component/form.html#form-%E5%B1%9E%E6%80%A7)   
+
 
 额外的添加了如下属性
 
@@ -45,10 +71,5 @@ export interface VFormProps<T extends object> extends Partial<Omit<FormProps, 'm
   onButtonClick?(action: string): void
 }
 ```
-::: tip 快速开始
-  使用`useFormBuilder`快速创建一个简单的表单
-:::
 
-<demo src="../../examples/api/create-form.tsx" 
-  file="../../examples/types.ts" />
 

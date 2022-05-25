@@ -12,7 +12,7 @@
 
 ## 安装
 ```bash
-npm install vform-element --save-dev
+npm install vform-ant-design --save-dev
 ```
 
 

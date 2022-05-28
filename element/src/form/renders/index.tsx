@@ -12,6 +12,7 @@ import type { VCascaderItem } from './cascader';
 import type { VCheckboxGroupItem } from './checkbox-group';
 import type { VColorPickerItem } from './color-picker';
 import type { VDatePickerItem } from './date-picker';
+import type { VDateRangePickerItem } from './date-range-picker';
 import type { VRadioGroupItem } from './radio-group';
 import type { VSliderItem } from './slider';
 import type { VSwitchItem } from './switch';
@@ -42,6 +43,7 @@ export * from './cascader'
 export * from './checkbox-group'
 export * from './color-picker'
 export * from './date-picker'
+export * from './date-range-picker'
 export * from './input'
 export * from './input-number'
 export * from './input-autocomplete'
@@ -116,6 +118,10 @@ export interface VFormItemTypes<T extends object = any, Key extends DeepKey<T> =
    */
   DatePicker: VDatePickerItem<T, Key>
 
+  /**
+   * 时间区间选择
+   */
+  DateRangePicker: VDateRangePickerItem<T, Key>
   Input: VInputItem<T, Key>
   InputNumber: VInputNumberItem<T, Key>
 

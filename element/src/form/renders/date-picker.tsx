@@ -8,40 +8,35 @@ import { registerRender } from '../register';
 import type { IDatePickerType } from 'element-plus/lib/components/date-picker/src/date-picker.type';
 import type { DateCell } from 'element-plus/es/components/date-picker/src/date-picker.type';
 
+/**
+ * 单选类型
+ */
 export type SinglePickerType = ('year' | 'month' | 'date' | 'week' | 'datetime' | 'dates')
+/**
+ * 单选类型
+ */
 export type DatePickerType = Extract<IDatePickerType, SinglePickerType>
+/**
+ * 单选类型
+ */
 export type DateRangePickerType = Exclude<IDatePickerType, DatePickerType>
 
-export type VDatePickerProps = VueProps<typeof ElDatePicker>
-export type VBaseDatePickerProps = Omit<VDatePickerProps, 'type'>
+export type ElDatePickerProps = VueProps<typeof ElDatePicker>
+export type VBaseDatePickerProps = Omit<ElDatePickerProps, 'type'>
 
-export type VSingleDatePickerProps = Omit<VBaseDatePickerProps, 'startPlaceholder' | 'endPlaceholder'> & {
+export type VDatePickerProps = Omit<VBaseDatePickerProps, 'startPlaceholder' | 'endPlaceholder'> & {
   type: DatePickerType | undefined
 }
 
-export interface VSingleDatePicker<
-  T extends object,
-  Key extends DeepKey<T> = DeepKey<T>
-  > extends VBaseItem<T, Key> {
-  props?: VPropDef<T, VSingleDatePickerProps>
-  transfer?: VTransfer<Into<T, Key>, dayjs.Dayjs | number | Date>
-  slots?: VDatePickerSlots
-}
-
-export type VRangeDatePickerProps = Omit<VBaseDatePickerProps, 'placeholder'> & {
-  type: DateRangePickerType
-}
-
-export interface VRangeDatePicker<
+export interface VDatePickerItem<
   T extends object,
   Key extends DeepKey<T> = DeepKey<T>,
-  EndKey extends DeepKey<T> = DeepKey<T>
   > extends VBaseItem<T, Key> {
-  dataIndexEnd: EndKey
-  props?: VPropDef<T, VRangeDatePickerProps>
-  transfer?: VTransfer<Into<T, Key | EndKey> | undefined, dayjs.Dayjs | number | Date | undefined>
+  props?: VPropDef<T, VDatePickerProps>
+  transfer?: VTransfer<Into<T, Key>, Date | number>
   slots?: VDatePickerSlots
 }
+
 
 export interface VDatePickerSlots {
   /**
@@ -53,49 +48,15 @@ export interface VDatePickerSlots {
    */
   'range-separator'?(): JSX.Element | JSX.Element[]
 }
-export type VDatePickerItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> = (VSingleDatePicker<T, Key> | VRangeDatePicker<T, Key>)
 
-const RangeList: DateRangePickerType[] = ['datetimerange', 'daterange', 'monthrange']
-
-function isRange(props: Partial<VSingleDatePickerProps | VRangeDatePickerProps>): props is VRangeDatePickerProps {
-  return RangeList.includes(props.type ?? null as any)
-}
-
-function merge<T extends object>(props: VFormProps<T>, item: VDatePickerItem<T>) {
-  return mergeProps(props.form, item.props as VPropDef<T, VSingleDatePickerProps | VRangeDatePickerProps>)
-}
 registerRender({
   type: 'DatePicker',
   render(props, item) {
     const Value = computed({
       get() {
-        const itemProps = merge(props, item);
-        if (isRange(itemProps)) {
-          return [
-            getWithTransfer(props.form, item.dataIndex, item.transfer),
-            // @ts-ignore
-            getWithTransfer(props.form, item.dataIndexEnd, item.transfer),
-          ]
-        }
         return getWithTransfer(props.form, item.dataIndex, item.transfer)
       },
       set(value) {
-        const itemProps = merge(props, item);
-        if (isRange(itemProps)) {
-          if (!value) {
-            console.info(value)
-            // @ts-ignore
-            setWithTransfer(props.form, item.dataIndex, null, item.transfer);
-            // @ts-ignore
-            setWithTransfer(props.form, item.dataIndexEnd, null, item.transfer);
-            return
-          }
-          // @ts-ignore
-          setWithTransfer(props.form, item.dataIndex, value[0], item.transfer);
-          // @ts-ignore
-          setWithTransfer(props.form, item.dataIndexEnd, value[1], item.transfer);
-          return
-        }
         // @ts-ignore
         setWithTransfer(props.form, item.dataIndex, value, item.transfer);
       }

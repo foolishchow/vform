@@ -12,7 +12,7 @@ const FormBuilder = useFormBuilder<BaseInfo>()
       valueFormat: 'x'
     }
   })
-  .DatePicker({
+  .DateRangePicker({
     dataIndex: 'age',
     dataIndexEnd: 'brithday',
     label: '请选择日期',

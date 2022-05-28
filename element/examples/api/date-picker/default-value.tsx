@@ -12,10 +12,10 @@ const FormBuilder = useFormBuilder<BaseInfo>()
       defaultValue: new Date(2010, 9, 1)
     }
   })
-  .DatePicker({
+  .DateRangePicker({
     dataIndex: 'age',
     label: '日期区间',
-    dataIndexEnd: 'age',
+    dataIndexEnd: 'sex',
     props: {
       type: 'daterange',
       startPlaceholder: '开始日期',

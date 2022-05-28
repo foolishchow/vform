@@ -12,13 +12,13 @@ const FormBuilder = useFormBuilder<BaseInfo>()
       valueFormat: 'x'
     },
     transfer: {
-      get(formVal: any) {
+      get(formVal) {
         if (formVal) {
           return Number(formVal) * 1000
         }
         return null
       },
-      set(compVal: any) {
+      set(compVal) {
         if (compVal) {
           return Number(compVal) / 1000
         }
@@ -28,16 +28,16 @@ const FormBuilder = useFormBuilder<BaseInfo>()
   })
   .Custom({
     customRender(data) {
-      if (!data.name) {
+      if (!data.age) {
         return <span>未选择</span>
       }
-      return <span>{data.name?.toString()}</span>
+      return <span>{data.age?.toString()}</span>
     }
   })
-  .DatePicker({
+  .DateRangePicker({
     colSpan: 2,
     dataIndex: 'brithday',
-    dataIndexEnd: 'friuts',
+    dataIndexEnd: 'sex',
     label: 'YYYY-MM-DD',
     props: {
       type: 'daterange',
@@ -46,13 +46,13 @@ const FormBuilder = useFormBuilder<BaseInfo>()
       valueFormat: 'x'
     },
     transfer: {
-      get(formVal: any) {
+      get(formVal) {
         if (formVal) {
           return Number(formVal) * 1000
         }
         return null
       },
-      set(compVal: any) {
+      set(compVal) {
         if (compVal) {
           return Number(compVal) / 1000
         }
@@ -67,7 +67,7 @@ const FormBuilder = useFormBuilder<BaseInfo>()
       if (!data.brithday) {
         return <span>未选择</span>
       }
-      return <span>{data.brithday?.toString()} --  {data.friuts?.toString()}</span>
+      return <span>{data.brithday?.toString()} --  {data.sex?.toString()}</span>
     }
   })
 

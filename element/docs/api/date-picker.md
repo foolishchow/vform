@@ -24,8 +24,10 @@
 
 ## 时间范围
 
-:::warning 定制
-在时间范围选择的时候，我们分别使用`dataIndex` 和 `dataIndexEnd` 属性，配置 `开始时间` 和 `结束时间`
+:::warning 定制内容
+为了更好的类型推导，我们将时间范围选择定制为`DateRangePicker`   
+
+分别使用`dataIndex` 和 `dataIndexEnd` 属性，配置 `开始时间` 和 `结束时间`
 :::
 
 <demo src="../../examples/api/date-picker/date-range.tsx" />
@@ -54,7 +56,7 @@
 ## 数据转换
 
 ::: warning 定制化
-只是一个定制化的选项,`element-plus`不包含这个属性
+这是一个定制化的选项, `element-plus` 不包含
 :::
 
 如果后台需要的是精确到秒的时间戳，这个时候我们就需要做变换了   

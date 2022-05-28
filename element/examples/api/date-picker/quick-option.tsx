@@ -33,7 +33,6 @@ const FormBuilder = useFormBuilder<BaseInfo>()
   .DatePicker({
     dataIndex: 'name',
     label: '请选择日期',
-    dataIndexEnd: 'address',
     props: {
       type: 'date',
       placeholder: '请选择日期',

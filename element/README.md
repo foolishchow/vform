@@ -23,6 +23,10 @@
 
 ## 变更记录
 
+- ### 2022-05-28 
+  `2.0.0-alpha.5`   
+  为了更好的类型推导，们将 `DatePicker` 分成 `DatePicker` 和 `DateRangePicker`
+
 - ### 2022-05-26 
   `2.0.0-alpha.4`   
   完善表单 `Form` 方法与事件 , 完全遵循 `ElForm` 

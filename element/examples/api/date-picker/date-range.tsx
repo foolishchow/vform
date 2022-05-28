@@ -3,7 +3,7 @@ import { useFormBuilder } from 'vform-element'
 import type { BaseInfo } from '@examples/types'
 
 const FormBuilder = useFormBuilder<BaseInfo>()
-  .DatePicker({
+  .DateRangePicker({
     dataIndex: 'name',
     label: '日期区间',
     dataIndexEnd: 'age',
@@ -18,7 +18,7 @@ const FormBuilder = useFormBuilder<BaseInfo>()
       }
     }
   })
-  .DatePicker({
+  .DateRangePicker({
     label: '时间区间',
     dataIndex: 'progress',
     dataIndexEnd: 'friuts',
@@ -28,7 +28,7 @@ const FormBuilder = useFormBuilder<BaseInfo>()
       endPlaceholder: '结束时间'
     }
   })
-  .DatePicker({
+  .DateRangePicker({
     label: '月份区间',
     dataIndex: 'brithday',
     dataIndexEnd: 'city',

@@ -1,6 +1,6 @@
 import type { VBaseItem } from '.';
 import { registerRender } from '../register';
-import type { DeepKey } from '../types';
+import type { DeepKey, FormRenderExtra } from '../types';
 
 /**
  * 类型 custom
@@ -10,12 +10,12 @@ export interface VCustomItem<T extends object, Key extends DeepKey<T> = DeepKey<
    * 自定义渲染
    * @param data
    */
-  customRender(data: T): JSX.Element
+  customRender(data: T, extra?: FormRenderExtra): JSX.Element
 }
 registerRender({
   type: 'Custom',
-  render(props, item) {
+  render(props, item, extra) {
     // @ts-ignore
-    return item.customRender(props.form)
+    return item.customRender(props.form, extra)
   }
 })

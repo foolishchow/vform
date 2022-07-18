@@ -1,5 +1,5 @@
 import { Button, Col, FormItem, Row } from 'ant-design-vue';
-import type { VFormProps, DeepKey, DynamicDef } from './types';
+import type { VFormProps, DeepKey, DynamicDef, FormRenderExtra } from './types';
 import { getLabelRender } from './register';
 import { getDynamic } from './utils';
 import { renderDefaultFormLabel, renderItem } from './item-render';
@@ -12,7 +12,8 @@ export const FormItemHolder = defineComponent({
   props: {
     formProps: PropTypes.object<VFormProps<any>>().isRequired,
     dynamicItem: PropTypes.any<DynamicDef<any, VFormItem<any>>>().isRequired,
-    itemIndex: PropTypes.number.isRequired
+    itemIndex: PropTypes.number.isRequired,
+    extra: PropTypes.any<FormRenderExtra>()
   },
   setup(props, context) {
     const item = ref<VFormItem<any>>()
@@ -20,7 +21,7 @@ export const FormItemHolder = defineComponent({
       item.value = getDynamic(props.formProps.form, props.dynamicItem)
     })
     return () => {
-      return renderFormLabel(props.formProps, item.value!, props.itemIndex)
+      return renderFormLabel(props.formProps, item.value!, props.itemIndex, props.extra)
     }
   }
 })
@@ -31,7 +32,8 @@ export const FormItemHolder = defineComponent({
 export function renderFormLabel<T extends object, Key extends DeepKey<T> = DeepKey<T>>(
   props: VFormProps<T>,
   dynamicItem: VFormItem<T, Key>,
-  itemIndex: number
+  itemIndex: number,
+  extra?: FormRenderExtra
 ) {
   const formValidateTrigger = props.validateTrigger
   const itemSpan = Math.floor(24 / (props.row ?? 3));
@@ -42,9 +44,9 @@ export function renderFormLabel<T extends object, Key extends DeepKey<T> = DeepK
   const render = getLabelRender(item)
   if (render) {
     // @ts-ignore
-    return render(props, item, formValidateTrigger!, itemSpan, itemIndex, renderItem)
+    return render(props, item, formValidateTrigger!, itemSpan, itemIndex, renderItem, extra)
   }
-  return renderDefaultFormLabel(props, item, formValidateTrigger!, itemSpan)
+  return renderDefaultFormLabel(props, item, formValidateTrigger!, itemSpan, extra)
 }
 
 function renderFormButtons<T extends object>(

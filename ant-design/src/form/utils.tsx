@@ -37,12 +37,17 @@ export function getDynamic<T, Option>(form: T, def?: DynamicDef<T, Option> | und
   return def
 }
 
-export function getDataIndex(dataIndex?: string) {
+export function getDataIndex(dataIndex?: string, dataIndexPreffix?: (string | number)[]) {
   if (!dataIndex || dataIndex.length == 0) {
     return undefined
   }
-  return dataIndex.split('.')
+  const list = dataIndex.split('.')
+  if (dataIndexPreffix) {
+    return [...dataIndexPreffix, ...list]
+  }
+  return list
 }
+
 
 export function getWithTransfer<T extends object, Key extends DeepKey<T>>(
   data: T, key: Key, transfer?: VTransfer<any, any>

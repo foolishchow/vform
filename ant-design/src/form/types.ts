@@ -94,7 +94,7 @@ export interface VFormProps<T extends object> {
   /**
    * 表单配置
    */
-  items:  VFormItem<T,any>[]
+  items: VFormItem<T, any>[]
   row?: 1 | 2 | 3 | 4
   /**
    * 按钮配置
@@ -112,7 +112,10 @@ export type VValidateTrigger = 'change' | 'blur'
 
 
 
-
+export interface FormRenderExtra {
+  dataIndexPreffix?: (string | number)[]
+  [key: string]: any
+}
 
 
 

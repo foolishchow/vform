@@ -1,6 +1,6 @@
 import { Col, Form } from 'ant-design-vue';
 import "./renders"
-import type { VValidateTrigger, VFormProps, DeepKey } from './types';
+import type { VValidateTrigger, VFormProps, DeepKey, FormRenderExtra } from './types';
 import { getItemRender } from './register';
 import { getDataIndex, getDynamic } from './utils';
 import { VFormItem } from './renders';
@@ -18,7 +18,8 @@ export function renderDefaultFormLabel<T extends object, Key extends DeepKey<T> 
   props: VFormProps<T>,
   item: VFormItem<T, Key>,
   formValidateTrigger: VValidateTrigger | VValidateTrigger[] | undefined,
-  itemSpan: number
+  itemSpan: number,
+  extra?: FormRenderExtra
 ) {
   if (getDynamic(props.form, item.vIf) === false) {
     return null;
@@ -29,9 +30,9 @@ export function renderDefaultFormLabel<T extends object, Key extends DeepKey<T> 
   return <Col span={span} key={item.dataIndex} >
     <FormItem
       label={getDynamic(props.form, item.label)}
-      name={getDataIndex(item.dataIndex)}
+      name={getDataIndex(item.dataIndex, extra?.dataIndexPreffix)}
       rules={rule} validateTrigger={validateTrigger}>
-      {renderItem(props, item)}
+      {renderItem(props, item, extra)}
     </FormItem>
   </Col>
 }
@@ -44,16 +45,17 @@ export function renderDefaultFormLabel<T extends object, Key extends DeepKey<T> 
  */
 export function renderItem<T extends object, Key extends DeepKey<T> = DeepKey<T>>(
   props: VFormProps<T>,
-  item: VFormItem<T, Key>
+  item: VFormItem<T, Key>,
+  extra?: FormRenderExtra
 ) {
   const render = getItemRender(item)
   if (render) {
-    return render(props, item)
+    return render(props, item, extra)
   }
   // @ts-ignore
   if (item.customRender) {
     // @ts-ignore
-    return item.customRender(props.form)
+    return item.customRender(props.form, extra)
   }
   return <span>no render for type [{item.type}]</span>
 }

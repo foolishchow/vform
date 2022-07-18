@@ -1,11 +1,12 @@
 import type { RenderFunction } from 'vue';
 import type { VFormItemTypes, RegistedItem, VFormItem } from './renders';
-import type { DeepKey, VFormProps, VValidateTrigger } from './types';
+import type { DeepKey, FormRenderExtra, VFormProps, VValidateTrigger } from './types';
 
 export interface ItemRender<Type extends keyof VFormItemTypes> {
   <T extends object>(
     props: VFormProps<T>,
-    item: RegistedItem<Type, VFormItemTypes<T, DeepKey<T>>[Type]>
+    item: RegistedItem<Type, VFormItemTypes<T, DeepKey<T>>[Type]>,
+    extra?: FormRenderExtra
   ): (JSX.Element | RenderFunction)
 }
 
@@ -17,6 +18,7 @@ export interface FormLabelRender<Type extends keyof VFormItemTypes> {
     itemSpan: number,
     itemIndex: number,
     renderItem: ItemRender<Type>,
+    extra?: FormRenderExtra
   ): (JSX.Element | RenderFunction)
 }
 
@@ -77,7 +79,8 @@ export function registerDefaultLabelRender(
     props: VFormProps<T>,
     item: VFormItem<T, Key>,
     formValidateTrigger: VValidateTrigger | VValidateTrigger[],
-    itemSpan: number
+    itemSpan: number,
+    extra?: FormRenderExtra
   ) => (JSX.Element | RenderFunction)
 ) {
   _defaultLabelRender.render = render

@@ -12,7 +12,10 @@ import { getWithTransfer, mergeProps, setWithTransfer } from '../utils';
 /**
  * 类型 select
  */
-export interface VSelectItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VSelectItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   props?: VPropDef<T, SelectProps>
   transfer?: VTransfer<Into<T, Key>, string | number>
 }

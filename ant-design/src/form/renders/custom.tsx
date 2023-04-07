@@ -5,7 +5,10 @@ import type { DeepKey, FormRenderExtra } from '../types';
 /**
  * 类型 custom
  */
-export interface VCustomItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends Partial<VBaseItem<T, Key>> {
+export interface VCustomItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends Partial<VBaseItem<T, Key>> {
   /**
    * 自定义渲染
    * @param data

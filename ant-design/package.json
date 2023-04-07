@@ -1,6 +1,6 @@
 {
   "name": "vform-ant-design",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0",
   "description": "基于 Vue3 和 And-Design-Vue 的动态表单组件",
   "keywords": [
     "Vue3","and-design-vue","form","动态表单"

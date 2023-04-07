@@ -1,4 +1,4 @@
-import type { ValidationRule } from 'ant-design-vue/lib/form/Form'
+
 import { DeepKey, DynamicDef, ValueOf, VValidateTrigger } from '../types';
 
 import type { VCustomItem } from './custom';
@@ -16,6 +16,7 @@ import type { VSliderItem } from './slider'
 import type { VSwitchItem } from './switch'
 import type { VTimePickerItem } from './time-picker'
 import type { VRadioGroupItem } from './radio-group'
+import { RuleObject } from 'ant-design-vue/lib/form';
 
 export * from './custom'
 export * from './column'
@@ -39,7 +40,11 @@ export interface VBaseFormItem<T extends object> { }
 /**
  * 基础类型
  */
-export interface VBaseItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseFormItem<T> {
+export interface VBaseItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+>
+  extends VBaseFormItem<T> {
   /**
    * 占用多个区域
    */
@@ -55,7 +60,7 @@ export interface VBaseItem<T extends object, Key extends DeepKey<T> = DeepKey<T>
   /**
    * 验证规则
    */
-  rule?: DynamicDef<T, ValidationRule[]>
+  rule?: DynamicDef<T, RuleObject | RuleObject[]>
   /**
    * 验证触发时机 默认不主动触发 `''`
    */
@@ -69,7 +74,10 @@ export interface VBaseItem<T extends object, Key extends DeepKey<T> = DeepKey<T>
 /**
  * 注册类型
  */
-export interface VFormItemTypes<T extends object = any, Key extends DeepKey<T> = DeepKey<T>> {
+export interface VFormItemTypes<
+  T extends object = any,
+  Key extends DeepKey<T> = DeepKey<T>
+> {
   build: never
   form: never
   merge: never
@@ -99,14 +107,22 @@ export type RegistedTypes = keyof VFormItemTypes;
 /**
  * 注册类型 包含type
  */
-export type RegistedItemType<T extends object = any, Key extends DeepKey<T> = DeepKey<T>> = {
-  [ItemType in RegistedTypes]: VFormItemTypes<T, Key>[ItemType] & { type: ItemType }
-}
-export type RegistedItem<Type extends RegistedTypes, Opt> = {
+export type RegistedItemType<
+  T extends object = any,
+  Key extends DeepKey<T> = DeepKey<T>
+> = {
+    [ItemType in RegistedTypes]: VFormItemTypes<T, Key>[ItemType] & { type: ItemType }
+  }
+export type RegistedItem<
+  Type extends RegistedTypes, Opt
+> = {
   type: Type
 } & Opt
 
-export type VFormItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> = ValueOf<RegistedItemType<T, Key>>
+export type VFormItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> = ValueOf<RegistedItemType<T, Key>>
 
 
 

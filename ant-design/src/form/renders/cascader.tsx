@@ -13,7 +13,10 @@ import type { ValueType as CascaderValueType } from 'ant-design-vue/lib/vc-casca
 /**
    * 类型  cascader
    */
-export interface VCascaderItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VCascaderItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   props?: VPropDef<T, CascaderProps>,
   transfer?: VTransfer<Into<T, Key>, CascaderValueType>
 }

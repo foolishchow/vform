@@ -12,7 +12,10 @@ import { getWithTransfer, mergeProps, setWithTransfer } from '../utils';
 /**
  * 类型  auto-complete
  */
-export interface VAutoCompleteItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VAutoCompleteItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   props?: VPropDef<T, AutoCompleteProps>
   transfer?: VTransfer<Into<T, Key>, string | number>
 }

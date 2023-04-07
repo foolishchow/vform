@@ -3,22 +3,34 @@ import type { ButtonProps } from 'ant-design-vue'
 import type { VFormItem } from './renders';
 
 export type isAny<Data> = 0 extends 1 & Data ? true : false;
-export type DeepKey<Data> = Data extends (infer T)[] ? DeepKey<T> : 0 extends 1 & Data ? string : _DeepKeyOf<Data>
+export type DeepKey<Data> = Data extends (infer T)[]
+  ? DeepKey<T>
+  : 0 extends 1 & Data
+  ? string
+  : _DeepKeyOf<Data>
+
 export type _DeepKeyOf<Data> = 0 extends 1 & Data
   ? never
   : Data extends (infer T)[]
   ? _DeepKeyOf<T>
   : Data extends object
   ? {
-    [Key in keyof Data & (string | number)]: `${Key}` | `${Key}.${_DeepKeyOf<Data[Key]>}`
+    [Key in keyof Data & (string | number)]: `${Key}`
+    | `${Key}.${_DeepKeyOf<Data[Key]>}`
   }[keyof Data & (string | number)]
   : never;
 
-export type DeepFlatten<Data, Keys extends string = DeepKey<Data>> = {
-  [key in Keys]: Into<Data, key>
-}
+export type DeepFlatten<
+  Data extends Record<string | number | symbol, any>,
+  Keys extends string = DeepKey<Data>
+> = {
+    [key in Keys]: Into<Data, key>
+  }
 
-export type Into<T extends Record<keyof any, any>, Key extends string> =
+export type Into<
+  T extends Record<keyof any, any>,
+  Key extends string
+> =
   Key extends `${infer Start}.${infer End}` ?
   Start extends keyof T ? Into<T[Start], End> : never
   : Key extends keyof T ? T[Key] : never

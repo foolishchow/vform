@@ -12,7 +12,10 @@ import { getWithTransfer, mergeProps, setWithTransfer } from '../utils';
 /**
  * 类型 switch
  */
-export interface VSwitchItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VSwitchItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   props?: VPropDef<T, SwitchProps>
   slots?: {
     checkedChildren?: JSX.Element | { (): JSX.Element }

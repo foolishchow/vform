@@ -7,7 +7,11 @@ import { Dayjs } from 'dayjs';
 import type { VBaseItem } from '.';
 import { registerRender } from '../register';
 
-export interface VDateRangePickerItem<T extends object, Key extends DeepKey<T> = DeepKey<T>, EndKey extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VDateRangePickerItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>,
+  EndKey extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   /**
    * 类型  date-range-picker
    */
@@ -16,7 +20,10 @@ export interface VDateRangePickerItem<T extends object, Key extends DeepKey<T> =
   transfer?: VTransfer<Into<T, Key | EndKey>, Dayjs>
 }
 
-export function renderDateRangePicker<T extends object, Key extends DeepKey<T> = DeepKey<T>>(
+export function renderDateRangePicker<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+>(
   props: VFormProps<T>,
   item: VDateRangePickerItem<T, Key>
 ) {

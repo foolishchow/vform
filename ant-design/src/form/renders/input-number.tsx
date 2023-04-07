@@ -12,7 +12,10 @@ import { getWithTransfer, mergeProps, setWithTransfer } from '../utils';
 /**
  * 类型 input-number
  */
-export interface VInputNumberItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VInputNumberItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   /**
    * `ant-design-vue Input`的属性
    */

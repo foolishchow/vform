@@ -61,7 +61,10 @@ const VForm = defineComponent({
     return () => {
 
       return (
-        <Form class={[`v-form v-form__row_${props.row} ${props.search ? 'is-search' : ''}`, context.attrs.class]} model={props.form} ref={formRef}
+        <Form
+          class={[`v-form v-form__row_${props.row} ${props.search ? 'is-search' : ''}`, context.attrs.class]}
+          model={props.form}
+          ref={formRef}
           v-slots={{
             default: () => {
               return <>
@@ -76,13 +79,20 @@ const VForm = defineComponent({
   },
 })
 
-export interface VFormInstance<T extends object> extends Omit<FormExpose, 'validate'> {
+export interface VFormInstance<T extends object>
+  extends Omit<FormExpose, 'validate'> {
   $: import('vue').ComponentInternalInstance
-  $props: VFormProps<T> & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps
+  $props: VFormProps<T>
+  & import('vue').VNodeProps
+  & import('vue').AllowedComponentProps
+  & import('vue').ComponentCustomProps
   /**
    * 触发表单验证
    */
-  validate(nameList?: NamePath[] | string, options?: ValidateOptions): Promise<boolean>
+  validate(
+    nameList?: NamePath[] | string,
+    options?: ValidateOptions
+  ): Promise<boolean>
 }
 
 /**
@@ -128,7 +138,10 @@ export interface VForm<T extends object> {
   /**
    * 触发表单验证
    */
-  validate(nameList?: NamePath[] | string, options?: ValidateOptions): Promise<boolean>
+  validate(
+    nameList?: NamePath[] | string,
+    options?: ValidateOptions
+  ): Promise<boolean>
 
   /**
    * 验证指定field
@@ -178,7 +191,9 @@ export function createVForm<T extends object>(): VForm<T> {
  * @param items
  * @returns
  */
-export function createVFormOption<T extends object>(items: DynamicDef<T, VFormItem<T>>[]): DynamicDef<T, VFormItem<T>>[] {
+export function createVFormOption<T extends object>(
+  items: DynamicDef<T, VFormItem<T>>[]
+): DynamicDef<T, VFormItem<T>>[] {
   return items
 }
 

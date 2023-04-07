@@ -14,7 +14,10 @@ const FormItem = Form.Item
  * @param itemSpan
  * @returns
  */
-export function renderDefaultFormLabel<T extends object, Key extends DeepKey<T> = DeepKey<T>>(
+export function renderDefaultFormLabel<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+>(
   props: VFormProps<T>,
   item: VFormItem<T, Key>,
   formValidateTrigger: VValidateTrigger | VValidateTrigger[] | undefined,
@@ -43,7 +46,10 @@ export function renderDefaultFormLabel<T extends object, Key extends DeepKey<T> 
  * @param item 当前的item
  * @returns
  */
-export function renderItem<T extends object, Key extends DeepKey<T> = DeepKey<T>>(
+export function renderItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+>(
   props: VFormProps<T>,
   item: VFormItem<T, Key>,
   extra?: FormRenderExtra

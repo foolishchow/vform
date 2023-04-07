@@ -12,7 +12,10 @@ import { getWithTransfer, mergeProps, setWithTransfer } from '../utils';
 /**
  * 类型 rate
  */
-export interface VRateItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VRateItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
 
   /**
    * `ant-design-vue rate`的属性

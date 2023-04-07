@@ -16,7 +16,10 @@ Input.props.autocomplete = PropTypes.string.def('off')
 /**
  * 类型 input
  */
-export interface VInputItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VInputItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   /**
    * `ant-design-vue Input`的属性
    */

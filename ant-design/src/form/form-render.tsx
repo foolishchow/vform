@@ -18,10 +18,18 @@ export const FormItemHolder = defineComponent({
   setup(props, context) {
     const item = ref<VFormItem<any>>()
     watchEffect(() => {
-      item.value = getDynamic(props.formProps.form, props.dynamicItem)
+      item.value = getDynamic(
+        props.formProps.form,
+        props.dynamicItem
+      )
     })
     return () => {
-      return renderFormLabel(props.formProps, item.value!, props.itemIndex, props.extra)
+      return renderFormLabel(
+        props.formProps,
+        item.value!,
+        props.itemIndex,
+        props.extra
+      )
     }
   }
 })
@@ -29,7 +37,10 @@ export const FormItemHolder = defineComponent({
 /**
  * 渲染组件form Item
  */
-export function renderFormLabel<T extends object, Key extends DeepKey<T> = DeepKey<T>>(
+export function renderFormLabel<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+>(
   props: VFormProps<T>,
   dynamicItem: VFormItem<T, Key>,
   itemIndex: number,
@@ -43,10 +54,24 @@ export function renderFormLabel<T extends object, Key extends DeepKey<T> = DeepK
   }
   const render = getLabelRender(item)
   if (render) {
-    // @ts-ignore
-    return render(props, item, formValidateTrigger!, itemSpan, itemIndex, renderItem, extra)
+    return render(
+      props,
+      item,
+      formValidateTrigger!,
+      itemSpan,
+      itemIndex,
+      // @ts-ignore
+      renderItem,
+      extra
+    )
   }
-  return renderDefaultFormLabel(props, item, formValidateTrigger!, itemSpan, extra)
+  return renderDefaultFormLabel(
+    props,
+    item,
+    formValidateTrigger!,
+    itemSpan,
+    extra
+  )
 }
 
 function renderFormButtons<T extends object>(
@@ -61,7 +86,9 @@ function renderFormButtons<T extends object>(
     <FormItem>
       {buttons.map(btn => {
         return (
-          <Button {...(btn.props || {})} onClick={props.onButtonClick?.bind(null, btn.action)}>
+          <Button
+            {...(btn.props || {})}
+            onClick={props.onButtonClick?.bind(null, btn.action)}>
             {btn.text}
           </Button>
         );
@@ -83,7 +110,12 @@ export function VFormRender<T extends object>(
       default: () => {
         return <>
           {(props.items ?? []).map((dynamicItem, index) => {
-            return <FormItemHolder key={index} formProps={props} dynamicItem={dynamicItem} itemIndex={index} />
+            return <FormItemHolder
+              key={index}
+              formProps={props}
+              dynamicItem={dynamicItem}
+              itemIndex={index}
+            />
             //renderFormLabel(props, dynamicItem, index)
           })}
           {renderFormButtons(props)}

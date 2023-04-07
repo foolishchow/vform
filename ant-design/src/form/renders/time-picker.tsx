@@ -13,7 +13,10 @@ import { getWithTransfer, mergeProps, setWithTransfer } from '../utils';
 /**
  * 类型 time-picker
  */
-export interface VTimePickerItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VTimePickerItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   props?: VPropDef<T, TimePickerProps>
   slots?: {
     checkedChildren?: JSX.Element | { (): JSX.Element }

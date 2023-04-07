@@ -13,7 +13,10 @@ import type { Dayjs } from 'dayjs'
 /**
  * 类型  date-picker
  */
-export interface VDatePickerItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VDatePickerItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   props?: VPropDef<T, DatePickerProps>
   transfer?: VTransfer<Into<T, Key>, Dayjs | undefined>
 }

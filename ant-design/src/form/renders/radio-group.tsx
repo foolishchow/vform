@@ -13,7 +13,10 @@ import { getWithTransfer, mergeProps, setWithTransfer } from '../utils';
 /**
  *  类型  radio-group
  */
-export interface VRadioGroupItem<T extends object, Key extends DeepKey<T> = DeepKey<T>> extends VBaseItem<T, Key> {
+export interface VRadioGroupItem<
+  T extends object,
+  Key extends DeepKey<T> = DeepKey<T>
+> extends VBaseItem<T, Key> {
   props?: VPropDef<T, RadioGroupProps>
 }
 

@@ -1,0 +1,21 @@
+{
+  "name": "v-from",
+  "version": "0.0.1",
+  "description": "v-from",
+  "private":true,
+  "author": "foolishchow",
+  "license": "MIT",
+  "workspaces": [
+    "ant-design",
+    "element",
+    "plugins/*"
+  ],
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "serve": "lerna run serve --parallel",
+    "watch": "lerna run watch --parallel",
+    "b": "lerna bootstrap"
+  }
+}

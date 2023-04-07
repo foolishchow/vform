@@ -1,0 +1,20 @@
+.el-picker-panel table {
+  display: table;
+}
+
+.el-picker-panel td,
+.el-picker-panel th {
+  border: none
+}
+
+.el-picker-panel tr {
+  border-top: none;
+}
+
+.el-picker-panel tr:nth-child(2n) {
+  background-color: transparent;
+}
+
+.el-form-item__content {
+  line-height: 0;
+}

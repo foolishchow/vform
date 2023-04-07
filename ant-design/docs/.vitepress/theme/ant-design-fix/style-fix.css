@@ -1,0 +1,20 @@
+.ant-picker-panel table {
+  display: table;
+}
+
+.ant-picker-panel td,
+.ant-picker-panel th {
+  border: none
+}
+
+.ant-picker-panel tr {
+  border-top: none;
+}
+
+.ant-picker-panel tr:nth-child(2n) {
+  background-color: transparent;
+}
+
+.el-form-item__content {
+  line-height: 0;
+}

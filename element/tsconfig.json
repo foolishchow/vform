@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "declaration": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "rootDir": "./",
+    "baseUrl": "./",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "vform-element": [
+        "./src/index.ts"
+      ],
+      "vform-element/*": [
+        "./src/*"
+      ],
+      "@examples/*": [
+        "./examples/*"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "docs",
+    "examples"
+  ],
+  "exclude": [
+    "docs/.vitepress/dist"
+  ]
+}

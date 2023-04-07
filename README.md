@@ -5,6 +5,7 @@
 
 ## status
 
+<<<<<<< HEAD
 -  vue3 + element-plus ( alpha )   
     <p>
         <a href="https://foolishchow.gitee.io/vform/element/">Online Documents</a>
@@ -25,6 +26,10 @@
             <img src="https://img.shields.io/npm/dm/vform-ant-design.svg" alt="Downloads">
         </a>
     </p> 
+=======
+-  vue3 + element-plus ( alpha )
+-  vue3 + ant-design-vue ( alpha )
+>>>>>>> dev
 -  vue2 + element-ui ( pending )
 -  vue2 + ant-design-vue ( - )
 

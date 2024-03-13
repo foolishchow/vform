@@ -7,7 +7,9 @@ type Primitive = string | number | boolean | bigint | symbol | null | undefined;
 export type DeepKey<T> = 0 extends 1 & T ? any
   : T extends Primitive ? never
   : T extends (infer Data)[]
-  ? `${number}.${DeepKey<Data>}`
+  ? Data extends Primitive
+  ? `${number}`
+  : `${number}.${DeepKey<Data>}`
   : T extends object
   ? {
     [Key in keyof T & (string | number)]: `${Key}` | `${Key}.${DeepKey<T[Key]>}`
@@ -19,12 +21,31 @@ type Got<T, Key> = T extends Primitive ? unknown
   : T extends (infer Item)[]
   ? Key extends `${number}` ? Item : unknown
   : Key extends keyof T ? T[Key] : unknown
+
 export type Into<T, Key extends string> = 0 extends 1 & T ? any
   : T extends Primitive ? unknown
   : Key extends `${infer Start}.${infer End}`
   ? Into<Got<T, Start>, End>
   : Got<T, Key>
 
+type UserInfo = {
+  name: string,
+  info: {
+    age: number
+    books: {
+      bookName: string
+    }[]
+    favor: {
+      bookName: {
+        dest: string
+        chapter: number
+      }
+    }
+  }
+}
+
+type ddd = '0' extends `${number}` ? true : false
+type ss = DeepKey<string[]>
 
 
 

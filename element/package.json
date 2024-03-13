@@ -1,6 +1,6 @@
 {
   "name": "vform-element",
-  "version": "2.0.0-alpha.7",
+  "version": "2.0.0-alpha.8",
   "description": "基于 Vue3 和 Element-plus 的动态表单组件",
   "keywords": [
     "Vue3",

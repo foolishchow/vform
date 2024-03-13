@@ -16,6 +16,7 @@ export interface VInputNumberItem<T extends object, Key extends DeepKey<T> = Dee
    * `element-plus InputNumber`的属性
    */
   props?: VPropDef<T, InputNumberProps>
+  transfer?: VTransfer<Into<T, Key>, string | number>
 }
 
 registerRender({
@@ -24,9 +25,9 @@ registerRender({
     // @ts-ignore
     return <ElInputNumber {...mergeProps(props.form, item.props)}
       // v-model:value={props.form[item.dataIndex as any]}
-      modelValue={getWithTransfer(props.form, item.dataIndex)}
+      modelValue={getWithTransfer(props.form, item.dataIndex, item.transfer)}
       // @ts-ignore
-      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e)}
+      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e, item.transfer)}
     // v-model:value={props.form[item.dataIndex]}
     />
   }

@@ -11,7 +11,7 @@ type VCheckboxGroupProps = VueProps<typeof ElCheckboxGroup>
 export interface VCheckboxGroupItem<
   T extends object,
   Key extends DeepKey<T> = DeepKey<T>,
-  > extends VBaseItem<T, Key> {
+> extends VBaseItem<T, Key> {
   /**
    * 类型  cascader
    */
@@ -69,7 +69,7 @@ registerRender({
       optionsNodes = options.map((option, index) => {
         return <ElCheckboxButton
           key={index}
-          label={dotGet(option, optionConfig.label as any)}
+          label={dotGet(option, optionConfig.value as any)}
           disabled={dotGet(option, optionConfig.disabled as any)}
           name={dotGet(option, optionConfig.name as any)}
         >
@@ -92,7 +92,7 @@ registerRender({
     }
     return <ElCheckboxGroup {...mergeProps(props.form, item.props) as VCheckboxGroupProps}
       modelValue={getWithTransfer(props.form, item.dataIndex, item?.transfer)}
-      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e, item?.transfer)}
+      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e as any, item?.transfer)}
     >
       {optionsNodes}
       {item.slots?.default?.()}

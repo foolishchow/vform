@@ -36,7 +36,7 @@ registerRender({
   type: 'SelectV2',
   render: (props, item) => {
     return <ElSelectV2
-      {...mergeProps(props.form, item.props)}
+      {...mergeProps(props.form, item.props) as any}
       modelValue={getWithTransfer(props.form, item.dataIndex)}
       onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e as any)}
       v-slots={item.slots}

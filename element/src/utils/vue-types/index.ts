@@ -33,7 +33,7 @@ export const PropTypes = {
   /**
    *  `Object` 类型
    */
-  object<T>() {
+  object<T extends object>() {
     return object<T>()
   },
   /**

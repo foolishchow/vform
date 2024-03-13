@@ -22,7 +22,7 @@ registerRender({
   render(props, item) {
     return <ElSlider {...mergeProps(props.form, item.props)}
       modelValue={getWithTransfer(props.form, item.dataIndex, item?.transfer)}
-      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e, item?.transfer)}
+      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e as any, item?.transfer)}
     />
   }
 })

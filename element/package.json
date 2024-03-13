@@ -1,13 +1,16 @@
 {
   "name": "vform-element",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.7",
   "description": "基于 Vue3 和 Element-plus 的动态表单组件",
   "keywords": [
-    "Vue3","element-plus","form","动态表单"
+    "Vue3",
+    "element-plus",
+    "form",
+    "动态表单"
   ],
   "main": "lib/index.cjs.js",
   "module": "lib/index.es.js",
-  "upkg":"lib/index.umd.js",
+  "upkg": "lib/index.umd.js",
   "types": "lib/index.d.ts",
   "author": "foolishchow",
   "license": "MIT",
@@ -24,7 +27,7 @@
   },
   "dependencies": {
     "vue-types": "~3.0.2",
-    "vue":"~3.2.34"
+    "vue": "~3.2.34"
   },
   "devDependencies": {
     "@element-plus/icons-vue": "^1.1.4",
@@ -40,8 +43,8 @@
     "tslib": "^2.4.0",
     "typescript": "^4.5.4",
     "vitepress": "^0.22.4",
-    "vitepress-live-demo":"0.0.6",
-    "vitepress-theme-document":"0.0.1",
+    "vitepress-live-demo": "0.0.6",
+    "vitepress-theme-document": "0.0.1",
     "vue-tsc": "^0.34.7"
   },
   "files": [

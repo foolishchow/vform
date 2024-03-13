@@ -10,7 +10,7 @@ type VRadioGroupProps = VueProps<typeof ElRadioGroup>
 export interface VRadioGroupItem<
   T extends object,
   Key extends DeepKey<T> = DeepKey<T>,
-  > extends VBaseItem<T, Key> {
+> extends VBaseItem<T, Key> {
   /**
    * 类型  cascader
    */
@@ -68,7 +68,7 @@ registerRender({
       optionsNodes = options.map((option, index) => {
         return <ElRadioButton
           key={index}
-          label={dotGet(option, optionProps.label as any)}
+          label={dotGet(option, optionProps.value as any)}
           disabled={dotGet(option, optionProps.disabled as any)}
           name={dotGet(option, optionProps.name as any)}
         >

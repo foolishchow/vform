@@ -37,7 +37,7 @@ registerRender({
   render: (props, item) => {
     return <ElCascader {...mergeProps(props.form, item.props) as Omit<VCascaderProps, 'props'>}
       modelValue={getWithTransfer(props.form, item.dataIndex, item?.transfer)}
-      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e, item?.transfer)}
+      onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e as any, item?.transfer)}
       v-slots={item.slots}
     />
   }

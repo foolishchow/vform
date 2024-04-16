@@ -1,13 +1,61 @@
 import type { ButtonProps, FormProps } from 'element-plus'
 import type { VFormItem } from './renders';
 
+type Primitive = string | number | boolean | bigint | symbol | null | undefined;
+
+
+export type DeepKey<T> = 0 extends 1 & T ? any
+  : T extends Primitive ? never
+  : T extends (infer Data)[]
+  ? Data extends Primitive
+  ? `${number}`
+  : `${number}.${DeepKey<Data>}`
+  : T extends object
+  ? {
+    [Key in keyof T & (string | number)]: `${Key}` | `${Key}.${DeepKey<T[Key]>}`
+  }[keyof T & (string | number)]
+  : never;
+
+
+type Got<T, Key> = T extends Primitive ? unknown
+  : T extends (infer Item)[]
+  ? Key extends `${number}` ? Item : unknown
+  : Key extends keyof T ? T[Key] : unknown
+
+export type Into<T, Key extends string> = 0 extends 1 & T ? any
+  : T extends Primitive ? unknown
+  : Key extends `${infer Start}.${infer End}`
+  ? Into<Got<T, Start>, End>
+  : Got<T, Key>
+
+type UserInfo = {
+  name: string,
+  info: {
+    age: number
+    books: {
+      bookName: string
+    }[]
+    favor: {
+      bookName: {
+        dest: string
+        chapter: number
+      }
+    }
+  }
+}
+
+type ddd = '0' extends `${number}` ? true : false
+type ss = DeepKey<string[]>
+
+
+
 
 export type isAny<Data> = 0 extends 1 & Data ? true : false;
-export type DeepKey<Data> = Data extends (infer T)[] ? DeepKey<T> : 0 extends 1 & Data ? string : _DeepKeyOf<Data>
+// export type DeepKey<Data> = Data extends (infer T)[] ? DeepKey<T> : 0 extends 1 & Data ? string : _DeepKeyOf<Data>
 export type _DeepKeyOf<Data> = 0 extends 1 & Data
   ? never
   : Data extends (infer T)[]
-  ? _DeepKeyOf<T>
+  ? `[${number}]${_DeepKeyOf<T>}`
   : Data extends object
   ? {
     [Key in keyof Data & (string | number)]: `${Key}` | `${Key}.${_DeepKeyOf<Data[Key]>}`
@@ -18,10 +66,11 @@ export type DeepFlatten<Data, Keys extends string = DeepKey<Data>> = {
   [key in Keys]: Into<Data, key>
 }
 
-export type Into<T extends Record<keyof any, any>, Key extends string> =
-  Key extends `${infer Start}.${infer End}` ?
-  Start extends keyof T ? Into<T[Start], End> : never
-  : Key extends keyof T ? T[Key] : never
+// export type Into<T, Key extends string> =
+//   T extends Record<keyof any, any> ?
+//   Key extends `${infer Start}.${infer End}` ?
+//   Start extends keyof T ? Into<T[Start], End> : never
+//   : Key extends keyof T ? T[Key] : never : never
 
 export type InstanceOf<T> = T extends { new(...args: any[]): infer U } ? U : never
 

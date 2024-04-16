@@ -2,7 +2,7 @@
   "name": "v-from",
   "version": "0.0.1",
   "description": "v-from",
-  "private":true,
+  "private": true,
   "author": "foolishchow",
   "license": "MIT",
   "workspaces": [
@@ -16,6 +16,7 @@
   "scripts": {
     "serve": "lerna run serve --parallel",
     "watch": "lerna run watch --parallel",
+    "dev": "lerna run dev --parallel",
     "b": "lerna bootstrap"
   }
 }

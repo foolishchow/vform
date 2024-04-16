@@ -1,5 +1,5 @@
 import { ElInput } from 'element-plus'
-import type { DeepKey, VPropDef, VueProps } from '../types';
+import type { DeepKey, Into, VPropDef, VTransfer, VueProps } from '../types';
 import { registerRender } from '../register'
 import { getWithTransfer, mergeProps, setWithTransfer } from '../utils'
 import type { VBaseItem } from '.';
@@ -22,6 +22,7 @@ export interface VInputItem<T extends object, Key extends DeepKey<T> = DeepKey<T
     prepend?: JSX.Element | { (): JSX.Element | string }
     append?: JSX.Element | { (): JSX.Element | string }
   }
+  transfer?: VTransfer<Into<T, Key>, string>
 }
 registerRender({
   type: 'Input',
@@ -29,8 +30,8 @@ registerRender({
     return () => {
       // @ts-ignore
       return <ElInput {...mergeProps(props.form, item.props)}
-        modelValue={getWithTransfer(props.form, item.dataIndex)}
-        onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e as any)}
+        modelValue={getWithTransfer(props.form, item.dataIndex, item.transfer)}
+        onUpdate:modelValue={e => setWithTransfer(props.form, item.dataIndex, e as any, item.transfer)}
         v-slots={item.slots}
       />
     }

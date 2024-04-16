@@ -92,7 +92,7 @@ function renderOption<T extends object>(item: VSelectItem<T>, index: number, opt
   if (isGroupOption(item, option)) {
     const label = item.slots?.optionGroup ? item.slots?.optionGroup(option, index) : dotGet(option as any, optionConfig.label as any)
     return <ElOptionGroup label={label} key={index}>
-      {renderOptions(item, optionConfig, dotGet(option, item.optionConfig?.children ?? 'children'))}
+      {renderOptions(item, optionConfig, dotGet(option, item.optionConfig?.children as any ?? 'children'))}
     </ElOptionGroup>
   }
   if (item.slots?.option) {

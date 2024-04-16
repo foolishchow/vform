@@ -1,7 +1,7 @@
 import { createVForm, VForm } from './index';
 import type { VFormItem, VFormItemTypes } from './renders';
 import type { Merge } from './type-merge';
-import type {  _DynamicDef, DeepKey, DynamicDef } from './types';
+import type { _DynamicDef, DeepKey, DynamicDef } from './types';
 import { wrapDynamic } from './utils';
 
 export type BuildTypes = Exclude<keyof VFormItemTypes & string, 'form' | 'build' | 'merge'>
@@ -24,15 +24,15 @@ interface Builder_Items<Type extends BuildTypes, T extends object, Configed exte
 type MergeResult<
   Source extends object, SourceConfig,
   IncommingConfig
-  > =  keyof IncommingConfig extends DeepKey<Source>
-    ? Builder<Source, Merge<IncommingConfig, SourceConfig>>
-    : never
+> = keyof IncommingConfig extends DeepKey<Source>
+  ? Builder<Source, Merge<IncommingConfig, SourceConfig>>
+  : never
 
 interface Builder_Merger<T extends object, Configed = {}> {
   <U extends object, _Configed extends object>(builder: Builder<U, _Configed>): MergeResult<T, Configed, _Configed>
 }
 
-type Builder_Methods = 'form'|'build' | 'merge' | BuildTypes
+type Builder_Methods = 'form' | 'build' | 'merge' | BuildTypes
 
 type BuilderInstance<Type extends Builder_Methods, T extends object, Configed extends object = {}> =
   | Type extends 'form' ? Builder_Form<T>
@@ -64,13 +64,13 @@ export function useFormBuilder<T extends object>(data?: T): Builder<T> {
           return (target._configs ?? []).map(wrapDynamic)
         }
       }
-      if(prototype == 'merge'){
-        return function(toMerge:any){
+      if (prototype == 'merge') {
+        return function (toMerge: any) {
           target._configs.push(...toMerge.$raw)
           return receiver
         }
       }
-      if(prototype == '$raw'){
+      if (prototype == '$raw') {
         return target._configs ?? []
       }
       return (config: ProxyedConfig<T>) => {
@@ -84,4 +84,25 @@ export function useFormBuilder<T extends object>(data?: T): Builder<T> {
   }) as any
 }
 
+
+interface Normal_Builder_Items<Type extends BuildTypes, T extends object> {
+  <Key extends DeepKey<T> = never>(
+    config: DynamicDef<T, VFormItemTypes<T, Key>[Type]>
+  ): NormalBuilder<T>
+}
+
+type NormalBuilderInstance<Type extends Builder_Methods, T extends object> =
+  | Type extends 'form' ? Builder_Form<T>
+  : Type extends 'build' ? Builder_<T, {}>
+  : Type extends 'merge' ? Builder_Merger<T, {}>
+  : Type extends BuildTypes ? Normal_Builder_Items<Type, T>
+  : never
+
+export type NormalBuilder<T extends object> = {
+  readonly [Type in Builder_Methods]: NormalBuilderInstance<Type, T>
+}
+
+export function useNormalFormBuilder<T extends object>(data?: T): NormalBuilder<T> {
+  return useFormBuilder(data) as any
+}
 

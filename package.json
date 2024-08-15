@@ -17,6 +17,8 @@
     "serve": "lerna run serve --parallel",
     "watch": "lerna run watch --parallel",
     "dev": "lerna run dev --parallel",
-    "b": "lerna bootstrap"
+    "b": "lerna bootstrap",
+    "build": "lerna run build",
+    "doc": "lerna run docs:build && ./build-doc.sh"
   }
 }

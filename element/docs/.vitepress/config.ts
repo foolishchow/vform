@@ -1,4 +1,4 @@
-import { MarkdownItLiveDemo,VitePluginLiveDemo} from 'vitepress-live-demo';
+import { MarkdownItLiveDemo, VitePluginLiveDemo } from 'vitepress-live-demo';
 import { UserConfig } from 'vitepress';
 import type { DefaultTheme } from 'vitepress/types/default-theme'
 import markdownItCheckbox from 'markdown-it-checkbox';
@@ -26,7 +26,7 @@ export const config: UserConfig<DefaultTheme.Config> = {
     // sidebar: false,
     sidebar: {
       api: ApiNavBar,
-      guide:GuideNavBar
+      guide: GuideNavBar
     },
     nav: [
       { text: '首页', link: '/' },
@@ -38,15 +38,15 @@ export const config: UserConfig<DefaultTheme.Config> = {
       },
       {
         text: 'AntDesignVue版本',
-        link: 'https://foolishchow.gitee.io/vform/ant-design/',
+        link: 'https://foolishchow.github.io/vform/ant-design/',
       },
     ],
   },
 
   vite: {
     // @ts-ignore
-    ssr:{
-      noExternal:['ant-design-vue','lodash-es']
+    ssr: {
+      noExternal: ['ant-design-vue', 'lodash-es']
     },
     server: {
       port: 7001,
@@ -65,7 +65,7 @@ export const config: UserConfig<DefaultTheme.Config> = {
     },
     plugins: [
       vueJsx(),
-      VitePluginLiveDemo({lineNumber:true,demos:[]})
+      VitePluginLiveDemo({ lineNumber: true, demos: [] })
     ]
   }
 };

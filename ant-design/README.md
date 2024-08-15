@@ -1,6 +1,6 @@
 # vform-ant-design
 
-[document](https://foolishchow.gitee.io/vform/ant-design/)
+[document](https://foolishchow.github.io/vform/ant-design/)
 
 
 > 基于 Vue3 和 ant-design-vue 的动态表单组件

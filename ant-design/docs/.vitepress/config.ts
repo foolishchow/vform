@@ -37,15 +37,15 @@ export const config: UserConfig<DefaultTheme.Config> = {
       },
       {
         text: 'ElementPlus版本',
-        link: 'https://foolishchow.gitee.io/vform/element/',
+        link: 'https://foolishchow.github.io/vform/element/',
       },
     ],
   },
 
   vite: {
     // @ts-ignore
-    ssr:{
-      noExternal:['ant-design-vue','lodash-es']
+    ssr: {
+      noExternal: ['ant-design-vue', 'lodash-es']
     },
     server: {
       port: 7002,

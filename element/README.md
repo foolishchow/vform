@@ -2,7 +2,7 @@
 
 基于 Vue3 和 Element-plus 的动态表单组件
 
-[document](https://foolishchow.gitee.io/vform/element/)
+[document](https://foolishchow.github.io/vform/element/)
 
 ## 设计的初衷
 动态表单其实并没有改变什么，却又改变了些什么
